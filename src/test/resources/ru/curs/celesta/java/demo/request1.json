@@ -1,0 +1,16 @@
+{
+  "id": "no1",
+  "date": "2017-01-02",
+  "customer_id": "CUST1",
+  "customer_name": "Василий",
+  "lines": [
+    {
+      "item_id": "A",
+      "qty": 5
+    },
+    {
+      "item_id": "B",
+      "qty": 4
+    }
+  ]
+}

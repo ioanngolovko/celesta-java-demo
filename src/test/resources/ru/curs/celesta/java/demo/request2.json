@@ -1,0 +1,12 @@
+{
+  "id": "no2",
+  "date": "2017-01-03",
+  "customer_id": "CUST1",
+  "customer_name": "Андрей",
+  "lines": [
+    {
+      "item_id": "A",
+      "qty": 3
+    }
+  ]
+}

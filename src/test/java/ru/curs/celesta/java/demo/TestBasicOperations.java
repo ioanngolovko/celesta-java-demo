@@ -4,9 +4,7 @@ import org.json.JSONObject;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import ru.curs.celesta.CallContext;
 import ru.curs.celesta.Celesta;
 import ru.curs.celesta.SessionContext;
@@ -20,7 +18,7 @@ public class TestBasicOperations {
     private static JSONObject request1;
     private static  JSONObject request2;
 
-    private static Celesta celesta;
+    private Celesta celesta;
 
     @BeforeAll
     static void beforeAll() throws Exception {
@@ -32,14 +30,18 @@ public class TestBasicOperations {
         )));
         request1 = new JSONObject(request1Str);
         request2 = new JSONObject(request2Str);
-
-        celesta = Celesta.createInstance();
-        celesta.login(SessionContext.SYSTEM_SESSION_ID, SessionContext.SYSTEM_USER_ID);
     }
 
-    @AfterAll
-    static void afterAll() {
-        celesta.close();
+    @BeforeEach
+    void beforeEach() {
+        this.celesta = Celesta.createInstance();
+        this.celesta.login(SessionContext.SYSTEM_SESSION_ID, SessionContext.SYSTEM_USER_ID);
+    }
+
+    @AfterEach
+    void afterAll() throws Exception {
+        this.celesta.callContext().getConn().createStatement().execute("SHUTDOWN");
+        this.celesta.close();
     }
 
     @Test
